@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { Box } from './Box';
 import { GlobalStyle } from './GlobalStyle';
-import { PhonebookForm } from './PhonebookForm/PhonebookForm';
-import { Contacts } from './Contacts/Contacts';
+import { ContactForm } from './ContactForm/ContactForm';
+import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
 export class App extends Component {
@@ -55,10 +55,10 @@ export class App extends Component {
         <Box as="h2" mb="10px">
           Phonebook
         </Box>
-        <PhonebookForm onSubmit={this.addContact} />
+        <ContactForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
         <Filter onChange={this.onInputChange}></Filter>
-        <Contacts
+        <ContactList
           contacts={this.filterContacts()}
           onClick={this.removeContact}
         />

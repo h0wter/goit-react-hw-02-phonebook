@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Box } from 'components/Box';
 
 export const Filter = ({ onChange }) => {
@@ -9,4 +10,8 @@ export const Filter = ({ onChange }) => {
       </Box>
     </>
   );
+};
+
+Filter.propTypes = {
+  onChange: PropTypes.func.isRequired,
 };

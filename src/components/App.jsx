@@ -14,19 +14,29 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
-    number: '',
     filter: '',
   };
 
-  addContact = () => {
+  addContact = (name, number) => {
+    if (this.state.contacts.find(contact => contact.name.includes(name))) {
+      alert(`${name} is already in contacts.`);
+      return;
+    }
+
     const contacts = [...this.state.contacts];
     contacts.push({
-      name: this.state.name,
-      number: this.state.number,
+      name,
+      number,
       id: nanoid(),
     });
-    this.setState({ contacts: contacts, name: '', number: '' });
+    this.setState({ contacts });
+  };
+
+  removeContact = id => {
+    const contacts = [...this.state.contacts].filter(
+      contact => contact.id !== id
+    );
+    this.setState({ contacts });
   };
 
   filterContacts = () => {
@@ -45,17 +55,12 @@ export class App extends Component {
         <Box as="h2" mb="10px">
           Phonebook
         </Box>
-        <PhonebookForm
-          name={this.state.name}
-          number={this.state.number}
-          onChange={this.onInputChange}
-          onSubmit={this.addContact}
-        />
+        <PhonebookForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
         <Filter onChange={this.onInputChange}></Filter>
         <Contacts
           contacts={this.filterContacts()}
-          onChange={this.onInputChange}
+          onClick={this.removeContact}
         />
         <GlobalStyle />
       </>

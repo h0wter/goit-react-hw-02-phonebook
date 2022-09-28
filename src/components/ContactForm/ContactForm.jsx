@@ -49,7 +49,7 @@ export class ContactForm extends Component {
                 required
               />
             </Box>
-            <Button>Add contact</Button>
+            <Button type="submit">Add contact</Button>
           </StyledForm>
         </Formik>
       </>

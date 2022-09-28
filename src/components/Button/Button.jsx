@@ -1,13 +1,11 @@
 import { PropTypes } from 'prop-types';
 import { StyledButton } from './Button.styled';
 
-export const Button = ({ onClick, children }) => {
-  return onClick ? (
-    <StyledButton type="button" onClick={onClick}>
+export const Button = ({ onClick = function () {}, type, children }) => {
+  return (
+    <StyledButton onClick={onClick} type={type}>
       {children}
     </StyledButton>
-  ) : (
-    <StyledButton type="submit">{children}</StyledButton>
   );
 };
 

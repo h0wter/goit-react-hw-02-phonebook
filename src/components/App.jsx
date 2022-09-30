@@ -23,20 +23,15 @@ export class App extends Component {
       return;
     }
 
-    const contacts = [...this.state.contacts];
-    contacts.push({
-      name,
-      number,
-      id: nanoid(),
+    this.setState({
+      contacts: [...this.state.contacts, { name, number, id: nanoid() }],
     });
-    this.setState({ contacts });
   };
 
   removeContact = id => {
-    const contacts = [...this.state.contacts].filter(
-      contact => contact.id !== id
-    );
-    this.setState({ contacts });
+    this.setState({
+      contacts: [...this.state.contacts].filter(contact => contact.id !== id),
+    });
   };
 
   filterContacts = () => {
